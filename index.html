@@ -18,11 +18,15 @@
                 <path d="M50 35V70" stroke="#FCF1D0" stroke-width="6" stroke-linecap="round"/>
                 <path d="M20 38L50 23L80 38" stroke="#FCF1D0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span class="logo-text">Edu</span>
+            <span class="logo-text">EduT</span>
         </div>
 
         <nav class="nav-right">
-            
+            <!-- Кнопка запиту/зворотного зв'язку -->
+    <a href="https://forms.gle/avkqKF75irecy6Ur5" target="_blank" class="btn-request">
+        📝 Залишити запит
+    </a>
+
             <button id="home-btn" class="btn-home">На головну</button>
         </nav>
     </header>
@@ -50,6 +54,17 @@
             <!-- Права частина: Меню курсів з розгортанням тем -->
             <div class="hero-right">
                 <h2>Курси та теми</h2>
+
+                   <!-- Поле пошуку -->
+                <div class="search-box">
+        <input type="text" id="search-input" placeholder="🔍 Пошук курсу або теми..." autocomplete="off">
+    </div>
+
+<!-- Повідомлення про відсутність результатів -->
+<div id="no-results" class="no-results hidden">
+    😔 За вашим запитом нічого не знайдено
+</div>
+
                 <div class="courses-accordion">
                     
                     <!-- Розділ 1 -->
@@ -114,6 +129,32 @@
             </div>
         </section>
     </main>
+
+<!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Логотип (такий самий, як у header, але компактніший) -->
+            <div class="logo">
+                <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="100" rx="20" fill="#22396F"/>
+                    <path d="M30 70V45L50 35L70 45V70" stroke="#FCF1D0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M50 35V70" stroke="#FCF1D0" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M20 38L50 23L80 38" stroke="#FCF1D0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="logo-text">EduT</span>
+            </div>
+
+            <!-- Копірайт -->
+            <p class="copyright">© 2026 EduT. Всі права захищені.</p>
+
+            <!-- Секція соцмереж (зараз прихована за допомогою класу hidden) -->
+            <div class="socials hidden">
+                <a href="#" class="social-link" title="Telegram">Telegram</a>
+                <a href="#" class="social-link" title="YouTube">YouTube</a>
+                <a href="#" class="social-link" title="Facebook">Facebook</a>
+            </div>
+        </div>
+    </footer>
 
     <script src="main.js"></script>
 </body>

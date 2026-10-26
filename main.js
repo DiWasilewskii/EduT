@@ -57,4 +57,99 @@ document.addEventListener('DOMContentLoaded', () => {
     // Події для кнопок повернення
     homeBtn.addEventListener('click', showHome);
     backBtn.addEventListener('click', showHome);
+
+// Пошук по сайту
+    // Пошук по сайту з повідомленням "Нічого не знайдено"
+const searchInput = document.getElementById('search-input');
+const courseGroups = document.querySelectorAll('.course-group');
+const noResultsMsg = document.getElementById('no-results');
+
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        let totalMatches = 0; // Лічильник знайдених співпадінь
+
+        courseGroups.forEach(group => {
+            const courseTitleBtn = group.querySelector('.course-title-btn');
+            const courseTitle = courseTitleBtn.querySelector('span').textContent.toLowerCase();
+            const topicList = group.querySelector('.topic-list');
+            const topics = group.querySelectorAll('.topic-item');
+
+            let hasMatchingTopic = false;
+
+            // Перевіряємо кожну тему у розділі
+            topics.forEach(topic => {
+                const topicTitle = topic.textContent.toLowerCase();
+                const isTopicMatch = topicTitle.includes(query);
+
+                if (isTopicMatch) {
+                    topic.style.display = '';
+                    hasMatchingTopic = true;
+                } else {
+                    topic.style.display = 'none';
+                }
+            });
+
+            // Якщо пошук порожній — повертаємо все у початковий стан
+            if (query === '') {
+                group.style.display = '';
+                topicList.classList.add('hidden');
+                courseTitleBtn.classList.remove('active');
+                topics.forEach(t => t.style.display = '');
+                return;
+            }
+
+            const isCourseMatch = courseTitle.includes(query);
+
+            if (isCourseMatch || hasMatchingTopic) {
+                group.style.display = '';
+                totalMatches++; // Збільшуємо лічильник, якщо розділ або тема підходить
+
+                if (hasMatchingTopic) {
+                    topicList.classList.remove('hidden');
+                    courseTitleBtn.classList.add('active');
+                }
+
+                if (isCourseMatch) {
+                    topics.forEach(t => t.style.display = '');
+                }
+            } else {
+                group.style.display = 'none';
+            }
+        });
+
+        // Керуємо видимістю повідомлення
+        if (query !== '' && totalMatches === 0) {
+            noResultsMsg.classList.remove('hidden');
+        } else {
+            noResultsMsg.classList.add('hidden');
+        }
+    });
+}
+
+
+
 });
+
+
+courseBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const currentTopicList = btn.nextElementSibling;
+
+        // Закриваємо всі інші відкриті списки
+        courseBtns.forEach(otherBtn => {
+            if (otherBtn !== btn) {
+                otherBtn.classList.remove('active');
+                otherBtn.nextElementSibling.classList.add('hidden');
+            }
+        });
+
+        // Перемикаємо поточний
+        btn.classList.toggle('active');
+        currentTopicList.classList.toggle('hidden');
+    });
+});
+
+
+
+
