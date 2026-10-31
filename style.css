@@ -89,18 +89,9 @@ body {
    
     transition: all 0.2s ease;
      cursor: pointer;
-     transition: all 0.2s;
+    
 }
 
-.btn-request-link {
-    text-decoration: none;
-     color: #FCF1D0;
-     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-     align-items: center;
-
-}
 
 .btn-request:hover {
     background-color: #22396F;
